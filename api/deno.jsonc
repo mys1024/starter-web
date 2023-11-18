@@ -1,0 +1,9 @@
+{
+  "tasks": {
+    "run":        "deno run   --lock=deno.lock --unstable --allow-read --allow-env --allow-net ./src/main.ts",
+    "run:watch":  "deno run   --lock=deno.lock --unstable --allow-read --allow-env --allow-net --watch ./src/main.ts",
+    "cache":      "deno cache --lock=deno.lock ./src/main.ts",
+    "cache:lock": "deno cache --lock=deno.lock --lock-write ./src/main.ts",
+    "keygen":     "deno run   ./src/keygen.ts"
+  }
+}
