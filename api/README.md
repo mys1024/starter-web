@@ -8,20 +8,19 @@ A [Deno](https://deno.land/) web project stater template.
 
 ## Environment variables
 
-Please set these environments variables before running:
+The following are configurable environment variables:
 
 ```shell
-# timezone offset in minutes, default: 0
+# timezone offset in minutes, default: 0.
 TIMEZONE_OFFSET = ""
 
-# base64 encoded ES256 key pair for JWT, run `deno task keygen` to generate them randomly
+# base64 encoded ES256 key pair for JWT.
+# If you need to use the `jwt()` middleware, please run `deno task keygen` to generate them.
 JWT_KEY_PUBLIC = ""
 JWT_KEY_PRIVATE = ""
 ```
 
-The environment variables without default value are required.
-
-You can create an file named `.env` in the root directory of this project, and set these environment variables in it. `src/config.ts` will load environment variables from file `.env`.
+You can create an file named `.env` in the root directory of this project, and set these environment variables in it. `src/config.ts` will load environment variables from the file `.env`.
 
 ## Tasks
 

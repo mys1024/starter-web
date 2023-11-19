@@ -7,6 +7,9 @@ async function signJwt(
   ttl: number,
   payload: JwtPayload,
 ) {
+  if (!JWT_KEY_PRIVATE) {
+    throw new Error("environment variable JWT_KEY_PRIVATE is undefined.");
+  }
   const now = Math.floor(Date.now() / 1000);
   return await djwt.create(
     { alg: "ES256", typ: "JWT" },
@@ -20,9 +23,12 @@ async function signJwt(
 }
 
 async function verifyJwt(jwt: string) {
-  return await (asyncIgnoreError(async () =>
-    await djwt.verify(jwt, JWT_KEY_PUBLIC) as JwtPayload
-  ));
+  return await (asyncIgnoreError(async () => {
+    if (!JWT_KEY_PUBLIC) {
+      throw new Error("environment variable JWT_KEY_PUBLIC is undefined.");
+    }
+    return await djwt.verify(jwt, JWT_KEY_PUBLIC) as JwtPayload;
+  }));
 }
 
 export { signJwt, verifyJwt };
