@@ -23,9 +23,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Change dir
-        run: cd site
-
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
@@ -39,13 +36,13 @@ jobs:
           cache-dependency-path: site/pnpm-lock.yaml
 
       - name: Install
-        run: pnpm run install
+        run: pnpm run -C site install
 
       - name: Lint
-        run: pnpm run lint
+        run: pnpm run -C site lint
 
       - name: Test
-        run: pnpm run test
+        run: pnpm run -C site test
 
       - name: Build
-        run: pnpm run build
+        run: pnpm run -C site build
