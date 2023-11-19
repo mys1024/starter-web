@@ -26,17 +26,20 @@ jobs:
       - name: Change dir
         run: cd site
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: pnpm
+          cache-dependency-path: site/package-lock.json
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          package_json_file: site/package.json
 
       - name: Install
-        run: pnpm install
+        run: pnpm run install
 
       - name: Lint
         run: pnpm run lint
