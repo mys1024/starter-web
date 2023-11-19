@@ -36,7 +36,7 @@ jobs:
           cache-dependency-path: site/pnpm-lock.yaml
 
       - name: Install
-        run: pnpm run -C site install
+        run: pnpm install -C site
 
       - name: Lint
         run: pnpm run -C site lint
